@@ -107,8 +107,8 @@ client.elevation = message => {
   let permlvl = 0;
   if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
   if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === settings.sahip) permlvl = 4;
-  if (message.author.id === settings.sahip2) permlvl = 4;
+  if (message.author.id === settings.owner) permlvl = 4;
+  if (message.author.id === settings.owner2) permlvl = 4;
   return permlvl;
 };
 
