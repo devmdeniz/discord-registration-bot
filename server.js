@@ -1,5 +1,5 @@
 // enable-pnpm-------------------------------------------------------------
-const ayarlar = require("./settings.json");
+const settings = require("./settings.json");
 const chalk = require("chalk");
 const Discord = require("discord.js");
 const discord = require("discord.js");
@@ -17,7 +17,7 @@ const { join } = require("path");
 const { readdirSync } = require("fs");
 const { PREFIX } = require("./settings.json");
 
-var prefix = ayarlar.prefix;
+var prefix = settings.prefix;
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
@@ -107,8 +107,8 @@ client.elevation = message => {
   let permlvl = 0;
   if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
   if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === ayarlar.sahip) permlvl = 4;
-  if (message.author.id === ayarlar.sahip2) permlvl = 4;
+  if (message.author.id === settings.sahip) permlvl = 4;
+  if (message.author.id === settings.sahip2) permlvl = 4;
   return permlvl;
 };
 
@@ -130,11 +130,11 @@ var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 //===========================================================================================
 
 client.on("guildMemberAdd", (member, message) => {
-  if (member.guild.id !== "473136137834070016") return;
+  if (member.guild.id !== "473136137834070016") return; //server id
   let user = client.users.get(member.id);
   require("moment-duration-format");
   let oldName = member.user.username;
-  const channelId = "608616527041921050";
+  const channelId = "608616527041921050"; //Register the name of the channel 
   const channel = member.guild.channels.get(channelId);
   let time = new Date().getTime() - user.createdAt.getTime();
   const accountTime = moment
@@ -143,7 +143,7 @@ client.on("guildMemberAdd", (member, message) => {
   const embed = new Discord.RichEmbed()
     .setColor("RANDOM")
     .setThumbnail(member.user.avatarURL)
-    .setTitle("✠ Z E U S")
+    .setTitle("ABUSIVE KAYIT")
     .setDescription(
       "Sunucuya Hoşgeldin " +
         member.toString() +
@@ -159,4 +159,4 @@ client.on("guildMemberAdd", (member, message) => {
   channel.send(embed);
 });
 
-client.login(process.env.TOKEN);
+client.login(secret.token);
